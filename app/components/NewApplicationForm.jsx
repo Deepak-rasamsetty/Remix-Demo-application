@@ -49,7 +49,8 @@ export default function NewApplicationForm() {
               <Stack direction="row">
                 <TextField
                   label="Zip Code"
-                  name="zipCode"
+                  name="zip"
+                  type="number"
                   sx={{ m: 1, width: "20ch" }}
                 />
                 <TextField
@@ -70,7 +71,7 @@ export default function NewApplicationForm() {
                 <OutlinedInput
                   id="outlined-adornment-amount"
                   label="Email Address"
-                  name="emailAddress"
+                  name="email"
                 />
               </FormControl>
              

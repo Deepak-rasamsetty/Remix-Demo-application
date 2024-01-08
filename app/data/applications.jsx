@@ -1,12 +1,24 @@
-import fs from 'fs/promises';
+
+import { PrismaClient, Prisma } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export async function getAllApplications() {
-  const rawFileContent = await fs.readFile('applications.json', { encoding: 'utf-8' });
-  const data = JSON.parse(rawFileContent);
-  const existingApplications = data.applications ?? [];
-  return existingApplications;
+  const user = await prisma.application.findMany();
+  return user;
 }
 
-export function storeApplication(application) {
-  return fs.writeFile('applications.json', JSON.stringify({ applications: application || [] }));
+export async function findUserByEmail(email){
+  const user = await prisma.application.findUnique({
+    where: {
+      email: email,
+    },
+  })
+}
+
+export async function storeApplication(applicationData) {
+  const user = await prisma.application.create({
+    data: applicationData,
+  })
+  return user;
 }
