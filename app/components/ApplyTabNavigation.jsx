@@ -1,5 +1,5 @@
 import { Box, Divider, Link, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { NavLink } from "@remix-run/react";
+import { NavLink, PrefetchPageLinks } from "@remix-run/react";
 import React, { useState } from "react";
 
 export default function ApplyTabNavigation() {
@@ -23,8 +23,9 @@ export default function ApplyTabNavigation() {
         <h2>New Application</h2>
       </Link>
 
-      <Link
-        href="/application/applicationStatus"
+      <Link 
+      rel="prefetch"
+        href="/application/searchApplication"
         style={{ color: "black", textDecoration: "none" }}
       >
         <h2>Application Status</h2>

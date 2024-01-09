@@ -2,10 +2,9 @@ import { Container, Divider, Paper, Stack } from "@mui/material";
 import { Outlet, redirect } from "@remix-run/react";
 import React from "react";
 import ApplyTabNavigation from "../components/ApplyTabNavigation";
-import { getAllApplications, storeApplication } from "../data/applications";
-import { PrismaClient, Prisma } from '@prisma/client'
+import { storeApplication } from "../data/applications";
+import { storeApplicationStatus } from "../data/applicationStatus";
 
-const prisma = new PrismaClient()
 
 export default function application() {
   return (
@@ -38,8 +37,7 @@ export async function action({request}){
     const formData = await request.formData();
     const applicationData = Object.fromEntries(formData);
     console.log('form data - '+JSON.stringify(applicationData));
-    const user = await prisma.application.create({
-        data: applicationData,
-      })
-    return redirect("/application"); 
+    const user = await storeApplication(applicationData);
+    const applicationStatus = await storeApplicationStatus(user.id);
+    return redirect(`/application/searchApplication/${user.id}/applicationStatus`); 
     }

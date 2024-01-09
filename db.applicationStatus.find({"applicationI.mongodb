@@ -1,0 +1,1 @@
+db.applicationStatus.find({"applicationId":"659d4d49dbe04346a7e6bf5c"});

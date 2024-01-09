@@ -22,3 +22,9 @@ model application {
   mobileNumber String
 
 }
+
+model appstatus{
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  applicationId String @unique
+  status String @default("PENDING")
+}

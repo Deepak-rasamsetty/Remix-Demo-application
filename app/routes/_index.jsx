@@ -68,7 +68,7 @@ export default function Index() {
        {/* {stackItems} */}
         <Grid container spacing={12} sx={{ flexGrow: 1 }}>
           <Grid item xs={4} justifyContent="center">
-            <Link href='/application'>
+            <Link href='/application/newApplication'>
             <Card
               sx={{ width: 140, paddingLeft: "20px", paddingRight: "20px" }}
             >
