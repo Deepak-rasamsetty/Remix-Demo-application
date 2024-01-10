@@ -1,5 +1,5 @@
 import { Container, Divider, Paper, Stack, Toolbar } from "@mui/material";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import React from "react";
 import ApplicantInformation from "../components/ApplicantInformation";
 import ApplicationStatus from "../components/ApplicationStatus";

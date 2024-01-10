@@ -27,7 +27,6 @@ export default function App() {
       <body>
         <MainHeader />
         <Outlet />
-        <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
