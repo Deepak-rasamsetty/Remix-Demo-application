@@ -1,6 +1,7 @@
 import {
   Container,
   Divider,
+  Hidden,
   Paper,
   Stack,
   Table,
@@ -19,6 +20,7 @@ import { getAllApplications } from "../data/applications";
 export default function applicationStatus() {
   const navigate = useNavigate();
   const columns = [
+    { field: "createdAt", headerName: "Created On", width: 0 },
     { field: "firstName", headerName: "First name", width: 80 },
     { field: "lastName", headerName: "Last name", width: 80 },
     { field: "address", headerName: "Address", width: 100 },
@@ -46,17 +48,19 @@ export default function applicationStatus() {
             paddingBlock: "50px",
           }}
         >
-           <DataGrid
-                  rows={applications}
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: { page: 0, pageSize: 5 },
-                    },
-                  }}
-                  pageSizeOptions={[5, 10]}
-                  onRowClick={handleClick}
-                />
+          <DataGrid
+            rows={applications}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+
+              },
+              
+            }}
+            pageSizeOptions={[5, 10]}
+            onRowClick={handleClick}
+          />
         </Paper>
       </Container>
       <Outlet />

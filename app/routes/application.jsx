@@ -10,7 +10,7 @@ export default function application() {
   return (
     <div>
       <div style={{ height: "60%" }}>
-        <Container maxWidth="lg" style={{ marginTop: "5%" }}>
+        <Container maxWidth="lg" style={{ marginTop: "3%" }}>
           <Paper
             elevation={5}
             style={{
@@ -39,5 +39,5 @@ export async function action({request}){
     console.log('form data - '+JSON.stringify(applicationData));
     const user = await storeApplication(applicationData);
     const applicationStatus = await storeApplicationStatus(user.id);
-    return redirect(`/application/searchApplication/${user.id}/applicationStatus`); 
+    return redirect(`/applicationInformation/${user.id}/applicationStatus`); 
     }

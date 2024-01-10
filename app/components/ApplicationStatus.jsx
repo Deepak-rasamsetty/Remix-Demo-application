@@ -1,7 +1,15 @@
-import { Stack, Divider, Toolbar, Button, IconButton, Chip } from "@mui/material";
-import { useNavigate } from "@remix-run/react";
+import {
+  Stack,
+  Divider,
+  Toolbar,
+  Button,
+  IconButton,
+  Chip,
+  Alert,
+} from "@mui/material";
+import { redirect, useNavigate } from "@remix-run/react";
 import React from "react";
-import {Refresh} from "@mui/icons-material";
+import { Refresh } from "@mui/icons-material";
 
 export default function ApplicationStatus(props) {
   const navigate = useNavigate();
@@ -9,30 +17,34 @@ export default function ApplicationStatus(props) {
   const refreshApplicationStatus = () => {
     navigate(".", { replace: true });
   };
+
   return (
     <Stack
       direction={"column"}
       divider={<Divider orientation="horizontal" flexItem />}
     >
-   
       <div
-        div
+
         style={{
           justifyContent: "center",
           paddingInline: "20px",
           display: "flex",
+          marginTop:"10px"
         }}
       >
-        <div>
-          <h4>Status : {props.status}</h4>
+   
+   <Alert severity={props.status==='APPROVED'?'success':'warning'}>{props.status}</Alert>
+
+          <IconButton
+            variant="outlined"
+            size="small"
+           
+            onClick={refreshApplicationStatus}
           
-          <Button  variant="contained" size="small" startIcon={<Refresh fontSize="large"/>} onClick={refreshApplicationStatus}>
-           
-           Refresh
-           
-        
-          </Button>
-        </div>
+          >
+            <Refresh fontSize="medium" />
+          </IconButton>
+      
       </div>
     </Stack>
   );
