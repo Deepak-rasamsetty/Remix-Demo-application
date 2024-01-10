@@ -25,7 +25,7 @@ export default function ApplyTabNavigation() {
 
       <Link 
       rel="prefetch"
-        href="/application/searchApplication"
+        href="/application/searchApplication/applicationList"
         style={{ color: "black", textDecoration: "none" }}
       >
         <h2>Application Status</h2>

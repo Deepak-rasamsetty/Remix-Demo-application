@@ -37,7 +37,7 @@ export default function ApplicationInfo() {
               }}
             >
               <Alert severity="success">
-                <AlertTitle>Successfully submiteed the Application</AlertTitle>
+                <AlertTitle>Successfully submitted the Application</AlertTitle>
               </Alert>
             </Toolbar>
 

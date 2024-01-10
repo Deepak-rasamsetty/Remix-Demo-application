@@ -29,6 +29,17 @@ export async function findUserById(applicationId){
   return user;
 }
 
+export async function findUserByFirstAndLastName(firstName, lastName){
+  const user = await prisma.application.findMany({
+    where: {
+      firstName: firstName,
+      lastName: lastName
+    },
+  });
+  console.log('users - '+JSON.stringify(user));
+  return user;
+}
+
 export async function storeApplication(applicationData) {
   const user = await prisma.application.create({
     data: applicationData,

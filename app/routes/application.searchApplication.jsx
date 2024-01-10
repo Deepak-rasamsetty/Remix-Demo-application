@@ -1,74 +1,53 @@
-import {
-  Container,
-  Divider,
-  Hidden,
-  Paper,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { Await, redirect, redirectDocument } from "@remix-run/react";
-import React, { Suspense } from "react";
-import { Outlet, useLoaderData, useNavigate } from "react-router";
-import { getAllApplications } from "../data/applications";
+import { Button, TextField } from "@mui/material";
+import { Stack } from "@mui/system";
+import { Outlet } from "@remix-run/react";
+import React from "react";
+import { findUserByFirstAndLastName } from "../data/applications";
 
-export default function applicationStatus() {
-  const navigate = useNavigate();
-  const columns = [
-    { field: "createdAt", headerName: "Created On", width: 0 },
-    { field: "firstName", headerName: "First name", width: 80 },
-    { field: "lastName", headerName: "Last name", width: 80 },
-    { field: "address", headerName: "Address", width: 100 },
-    { field: "zip", headerName: "Zip", width: 80 },
-    { field: "state", headerName: "State", width: 80 },
-    { field: "mobileNumber", headerName: "Mobile", width: 130 },
-    { field: "email", headerName: "Email", width: 130 },
-  ];
-  const handleClick = (row) => {
-    navigate(`/application/searchApplication/${row.row.id}/applicationStatus`);
-  };
-  const applications = useLoaderData();
+export default function searchApplication() {
   return (
-    <Stack
-      direction={"row"}
-      divider={<Divider orientation="vertical" flexItem />}
-    >
-      <Container maxWidth="lg" style={{ marginTop: "5%" }}>
-        <Paper
-          elevation={5}
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            paddingInline: "30px",
-            paddingBlock: "50px",
-          }}
-        >
-          <DataGrid
-            rows={applications}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
-
-              },
-              
+    <div>
+      <form
+        method="POST"
+        action="/application/searchApplication/applicationList"
+      >
+        <Stack direction={"column"}>
+          <Stack
+            direction="row"
+            style={{
+              justifyContent: "center",
+              display: "flex",
             }}
-            pageSizeOptions={[5, 10]}
-            onRowClick={handleClick}
-          />
-        </Paper>
-      </Container>
-      <Outlet />
-    </Stack>
-  );
-}
+          >
+            <TextField
+              label="First Name"
+              name="firstName"
+              sx={{ m: 1, width: "35" }}
+            />
+            <TextField
+              label="Last Name"
+              name="lastName"
+              sx={{ m: 1, width: "35" }}
+            />
+          </Stack>
 
-export async function loader() {
-  const applications = await getAllApplications();
-  return applications;
+          <Stack
+            direction="row"
+            justifyContent={"center"}
+            spacing={5}
+            style={{ marginTop: "5px" }}
+          >
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "white", color: "black" }}
+            >
+              Search
+            </Button>
+          </Stack>
+          <Outlet/>
+        </Stack>
+      </form>
+    </div>
+  );
 }

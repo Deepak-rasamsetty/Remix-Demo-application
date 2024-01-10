@@ -36,7 +36,6 @@ export default function application() {
 export async function action({request}){
     const formData = await request.formData();
     const applicationData = Object.fromEntries(formData);
-    console.log('form data - '+JSON.stringify(applicationData));
     const user = await storeApplication(applicationData);
     const applicationStatus = await storeApplicationStatus(user.id);
     return redirect(`/applicationInformation/${user.id}/applicationStatus`); 
